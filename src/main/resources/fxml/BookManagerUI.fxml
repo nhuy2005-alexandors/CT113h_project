@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox fx:controller="org.example.ui.BookManagerController"
+      xmlns:fx="http://javafx.com/fxml/1"
+      spacing="10"> <padding>
+    <Insets top="15.0" right="15.0" bottom="15.0" left="15.0"/>
+</padding>
+
+    <Label text="QUẢN LÝ SÁCH VỚI SPRING BOOT VÀ JAVAFX" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+    <TitledPane text="Thông Tin Sách" collapsible="false">
+        <content>
+            <GridPane hgap="10" vgap="10">
+                <padding>
+                    <Insets top="10.0" right="10.0" bottom="10.0" left="10.0"/>
+                </padding>
+
+                <Label text="ISBN:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtIsbn" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="Tiêu đề:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtTitle" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <Label text="Tác giả:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtAuthorName" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                <Label text="Năm XB:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtYear" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                <Label text="Thể loại:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtGenre" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+            </GridPane>
+        </content>
+    </TitledPane>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button text="Thêm Sách" onAction="#handleAddBook"/>
+        <Button text="Cập nhật" onAction="#handleUpdateBook"/>
+        <Button text="Xóa Sách" onAction="#handleDeleteBook"/>
+        <Button text="Làm mới/Xóa trắng" onAction="#clearFields"/>
+    </HBox>
+
+    <TableView fx:id="bookTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="isbnCol" text="ISBN" prefWidth="120"/>
+            <TableColumn fx:id="titleCol" text="Tiêu đề" prefWidth="250"/>
+            <TableColumn fx:id="authorCol" text="Tác giả" prefWidth="150"/>
+            <TableColumn fx:id="yearCol" text="Năm XB" prefWidth="80"/>
+        </columns>
+        <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+        </columnResizePolicy>
+    </TableView>
+
+</VBox>
