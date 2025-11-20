@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<GridPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="org.example.ui.BookDetailController"
+          hgap="10" vgap="10">
+    <padding>
+        <Insets top="20" right="20" bottom="10" left="20"/>
+    </padding>
+
+    <Label text="ISBN:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+    <TextField fx:id="txtIsbn" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+    <Label text="Tiêu đề:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+    <TextField fx:id="txtTitle" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+    <Label text="Tác giả:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+    <TextField fx:id="txtAuthorName" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+    <Label text="Năm xuất bản:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+    <TextField fx:id="txtYear" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+    <Label text="Thể loại:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+    <TextField fx:id="txtGenre" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+    <HBox spacing="10" alignment="CENTER_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="5">
+        <Button onAction="#handleOk" text="Lưu" defaultButton="true"/>
+        <Button onAction="#handleCancel" text="Hủy" cancelButton="true"/>
+    </HBox>
+</GridPane>
