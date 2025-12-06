@@ -42,6 +42,7 @@ public class BookManagerController implements ApplicationContextAware {
     @FXML private TableColumn<Book, String> titleCol;
     @FXML private TableColumn<Book, String> authorCol;
     @FXML private TableColumn<Book, Integer> yearCol;
+    @FXML private TableColumn<Book, String> genreCol;
 
     private ObservableList<Book> bookList;
 
@@ -57,6 +58,7 @@ public class BookManagerController implements ApplicationContextAware {
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         authorCol.setCellValueFactory(new PropertyValueFactory<>("authorName"));
         yearCol.setCellValueFactory(new PropertyValueFactory<>("publicationYear"));
+        genreCol.setCellValueFactory(new PropertyValueFactory<>("genre"));
 
         loadBookData();
 

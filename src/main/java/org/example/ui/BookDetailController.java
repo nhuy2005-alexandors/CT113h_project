@@ -6,10 +6,12 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.example.model.Author;
 import org.example.model.Book;
-import org.example.service.BookService; // CẦN THIẾT
-import org.springframework.beans.factory.annotation.Autowired; // CẦN THIẾT
-import org.springframework.dao.DuplicateKeyException; // CẦN THIẾT
+import org.example.service.BookService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Component;
+import javafx.scene.control.ComboBox;
+import org.example.model.Review;
 
 @Component
 public class BookDetailController {
@@ -24,6 +26,7 @@ public class BookDetailController {
     @FXML private TextField txtAuthorName;
     @FXML private TextField txtGenre;
     @FXML private TextField txtYear;
+    @FXML private ComboBox<String> cmbReviews;
 
     private Stage dialogStage;
     private Book book;
@@ -48,9 +51,27 @@ public class BookDetailController {
             if (book.getAuthor() != null) {
                 txtAuthorName.setText(book.getAuthor().getName());
             }
+
+            cmbReviews.getItems().clear(); // Xóa dữ liệu cũ
+            if (book.getReviews() != null && !book.getReviews().isEmpty()) {
+                for (Review r : book.getReviews()) {
+                    // Format chuỗi hiển thị: "5★: Sách hay quá (Nguyen Van A)"
+                    String display = String.format("%d★: %s (%s)",
+                            r.getRating(), r.getComment(), r.getReviewerName());
+                    cmbReviews.getItems().add(display);
+                }
+                cmbReviews.getSelectionModel().selectFirst(); // Chọn review đầu tiên
+            } else {
+                cmbReviews.getItems().add("Chưa có đánh giá nào");
+                cmbReviews.getSelectionModel().selectFirst();
+            }
         } else {
-            txtIsbn.setEditable(true); // Cho phép sửa ISBN khi ADD
+            txtIsbn.setEditable(true);
+            cmbReviews.getItems().clear();
+            cmbReviews.setPromptText("Sách mới chưa có đánh giá");
         }
+
+
     }
 
     public boolean isOkClicked() {
